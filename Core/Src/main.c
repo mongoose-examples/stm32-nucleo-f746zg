@@ -280,6 +280,11 @@ void StartDefaultTask(void const * argument)
   else
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 1);
 
+#define MG_IPADDR_PARTS(ADDR)  \
+    *((uint8_t *)ADDR), *((uint8_t *)ADDR + 1), *((uint8_t *)ADDR + 2), *((uint8_t *)ADDR + 3)
+
+  MG_INFO(("IP address: %d.%d.%d.%d\n", MG_IPADDR_PARTS(&gnetif.ip_addr)));
+
   struct mg_mgr mgr;
   mg_mgr_init(&mgr);
 
